@@ -1,6 +1,3 @@
-Claro! Aqui está o README modificado para o seu projeto de **Static Checker** da linguagem **styorm2024.2**, incluindo a explicação do **analisador léxico e semântico** e a geração de relatórios como parte do **projeto final de compiladores** para o curso de Engenharia da Computação:
-
-
 # Static Checker - styorm2024.2
 
 ## Visão Geral
