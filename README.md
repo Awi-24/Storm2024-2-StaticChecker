@@ -1,4 +1,4 @@
-# Static Checker - styorm2024.2
+# Static Checker - storm2024.2
 
 ## Visão Geral
 
