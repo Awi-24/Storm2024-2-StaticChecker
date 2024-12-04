@@ -2,28 +2,50 @@ import re
 
 # Definindo os tipos de tokens que o analisador irá reconhecer
 tokens = [
-    ("PALAVRA_CHAVE", r"\b(programa|fimPrograma|fimDeclaracoes|fimFunc|funcoes|imprime|se|senao|enquanto|retorna|vazio|logico|real|inteiro|cadeia|caracter|declaracoes)\b", 101),
+    ("PALAVRA_CHAVE", r"\b(PROGRAMA|FIMPROGRAMA|FIMDECLARACOES|FIMFUNC|FUNCOES|IMPRIME|SE|SENAO|ENQUANTO|RETORNA|VAZIO|LOGICO|REAL|INTEIRO|CADEIA|CARACTER|DECLARACOES)\b", 101),
     ("DELIMITADOR", r"[{}();,:]", 102),
-    ("IDENTIFICADOR", r"\b[a-zA-Z_][a-zA-Z0-9_]{0,29}\b", 103),
-    ("NUMERO", r"\b\d+(\.\d+)?\b", 104),
-    ("OPERADOR_ARITMETICO", r"[\+\-\*/%]", 105),
-    ("OPERADOR_LOGICO", r"[<>!=]=?|==|#", 106),
-    ("CADEIA", r'"[^"]{0,30}"', 107),
-    ("ESPACO", r"\s+", 108),
-    ("COMENTARIO", r"/\*.*?\*/", 109),  # Comentário de múltiplas linhas
-    ("COMENTARIO_LINHA", r"//[^\n]*", 110),  # Comentário de linha
-    ("DESCONHECIDO", r".", 999),
+    ("IDENTIFICADOR", r"\b[A-Z_][A-Z0-9_]{0,29}\b", 103),  # Nomes
+    ("NUMERO", r"\b\d+(\.\d+)?\b", 104),  # Valores Numéricos
+    ("OPERADOR_ARITMETICO", r"[\+\-\*/%]", 105),  # Matemática
+    ("OPERADOR_LOGICO", r"[<>!=]=?|==|#", 106),  # Lógica
+    ("CADEIA", r'"[^"]{0,30}"', 107),  # Vetor
+    ("ESPACO", r"\s+", 108),  # Vazio
+    ("DESCONHECIDO", r".", 999),  # Token inválido
 ]
 
 class AnalisadorLexico:
     def __init__(self, codigo):
-        self.codigo = codigo  # Mantendo o código com acentos
+        self.codigo = codigo.upper()
         self.tokens = []
         self.posicao = 0
         self.linha_atual = 1
         self.tabela_simbolos = {}
 
+    def remover_comentarios(self):
+        codigo_limpo = ""
+        i = 0
+        while i < len(self.codigo):
+            if self.codigo[i:i+2] == "//":  # Comentário de linha
+                # Ignorar tudo até a quebra de linha
+                while i < len(self.codigo) and self.codigo[i] != '\n':
+                    i += 1
+            elif self.codigo[i:i+2] == "/*":  # Comentário de múltiplas linhas
+                # Ignorar até o fechamento do comentário */
+                i += 2
+                while i < len(self.codigo) and self.codigo[i:i+2] != "*/":
+                    i += 1
+                i += 2  # Avançar para depois do "*/"
+            else:
+                # Copiar o caractere se não for parte de um comentário
+                codigo_limpo += self.codigo[i]
+                i += 1
+        return codigo_limpo
+
     def analisar(self):
+        # Limpar o código removendo os comentários antes de começar a análise léxica
+        codigo_sem_comentarios = self.remover_comentarios()
+        self.codigo = codigo_sem_comentarios.upper()  # Garantir que o código está em maiúsculas
+
         while self.posicao < len(self.codigo):
             match = None
             for tipo_token, regex, codigo in tokens:
@@ -31,30 +53,26 @@ class AnalisadorLexico:
                 match = pattern.match(self.codigo, self.posicao)
                 if match:
                     valor = match.group(0)
-                    
-                    # Se o token for um comentário, identificar e avançar
-                    if tipo_token == "COMENTARIO":
-                        self.tokens.append((valor, 109, None, self.linha_atual))
-                        self.posicao += len(valor)
-                        self.linha_atual += valor.count("\n")
-                        break
-                    
-                    if tipo_token == "COMENTARIO_LINHA":
-                        self.tokens.append((valor, 110, None, self.linha_atual))
-                        self.posicao += len(valor)
-                        self.linha_atual += valor.count("\n")
-                        break
-                    
+
                     # Processar outros tokens
-                    indice_tab_simb = self.tabela_simbolos.setdefault(valor, len(self.tabela_simbolos) + 1) if tipo_token == "IDENTIFICADOR" else None
+                    if tipo_token == "IDENTIFICADOR":
+                        # Adiciona identificador à tabela de símbolos se for a primeira vez
+                        indice_tab_simb = self.tabela_simbolos.setdefault(valor, len(self.tabela_simbolos) + 1)
+                    else:
+                        indice_tab_simb = None
+                    
+                    # Adiciona o token à lista de tokens (sem comentários)
                     self.tokens.append((valor, codigo, indice_tab_simb, self.linha_atual))
                     self.posicao += len(valor)
                     self.linha_atual += valor.count("\n")
                     break
+
+            # Tratamento de caracteres desconhecidos
             if not match:
                 caractere_invalido = self.codigo[self.posicao]
                 self.tokens.append((caractere_invalido, 999, None, self.linha_atual))
                 self.posicao += 1
+
         return self.tokens
 
     def gerar_relatorio(self, nome_arquivo, equipe, integrantes):
@@ -63,12 +81,13 @@ class AnalisadorLexico:
             arquivo.write("Componentes:\n")
             for integrante in integrantes:
                 arquivo.write(f"  {integrante}\n")
-            arquivo.write("\nRELATORIO DA ANALISE LEXICA. Texto fonte analisado: Teste.231\n")
+            arquivo.write("\nRELATORIO DA ANALISE LEXICA. Texto fonte analisado: Teste.242\n")  # Alteração da extensão para .242
             arquivo.write("-" * 70 + "\n")
             for valor, codigo, indice_tab_simb, linha in self.tokens:
                 arquivo.write(f"Lexeme: {valor}, Codigo: {codigo}, IndiceTabSimb: {indice_tab_simb}, Linha: {linha}\n")
                 arquivo.write("-" * 70 + "\n")
         print(f"Relatorio gerado em {nome_arquivo}")
+
 
 # Testando com o código ajustado
 codigo = """
@@ -86,6 +105,7 @@ funcoes
        que deve ser ignorado
        até o fechamento */
     /* Outro comentário aqui */
+    // Este é um comentário de linha
 fimFunc
 """
 
