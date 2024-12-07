@@ -87,7 +87,23 @@ class AnalisadorLexico:
                 arquivo.write(f"Lexeme: {valor}, Codigo: {codigo}, IndiceTabSimb: {indice_tab_simb}, Linha: {linha}\n")
                 arquivo.write("-" * 70 + "\n")
         print(f"Relatorio gerado em {nome_arquivo}")
+    
+    def gerar_relatorio_tab(self, nome_arquivo, equipe, integrantes):
+        with open(nome_arquivo, "w", encoding="utf-8") as arquivo:
+            arquivo.write(f"Codigo da Equipe: {equipe}\n")
+            arquivo.write("Componentes:\n")
+            for integrante in integrantes:
+                arquivo.write(f"  {integrante}\n")
+            arquivo.write("\nRELATORIO DA TABELA DE SIMBOLOS. Texto fonte analisado: Teste.242\n") 
+            for valor, codigo, indice_tab_simb, linha in self.tokens:
+                arquivo.write(f"Entrada: {indice_tab_simb if indice_tab_simb else 'N/A'}, Codigo: {codigo}, Lexeme: {valor}\n")
+                arquivo.write(f"QtdCharAntesTrunc: {len(valor)}, QtdCharDepoisTrunc: {len(valor)}\n")
+                arquivo.write(f"TipoSimb: {'IDENTIFICADOR' if indice_tab_simb else 'OUTRO'}, Linhas: {linha}\n")
+                arquivo.write("-" * 70 + "\n")
 
+        print(f"Relatorio gerado em {nome_arquivo}")
+  
+    
 
 # Testando com o código ajustado
 codigo = """
@@ -114,10 +130,15 @@ equipe = "02"
 integrantes = [
     "Adrian Widmer; adrian.widmer@aln.senaicimatec.edu.br; (71)99284-7135",
     "Giulia Franca; giulia.franca@aln.senaicimetec.edu.br; (71)xxxx-xxxx",
-    "Sicrano da Silva; sicrano.silva@ucsal.edu.br; (71)99999-9999"
+    "Sicrano da Silva; sicrano.silva@ucsal.edu.br; (71)99999-9999",
+    "Marcelo Silveira; marcelo.s.filho@aln.senaicimatec.edu.br; (71)99348-2808"
 ]
 
 # Executando
 analisador = AnalisadorLexico(codigo)
 tokens = analisador.analisar()
-analisador.gerar_relatorio("saida.LEX", equipe, integrantes)
+#analisador.gerar_relatorio("saida.LEX", equipe, integrantes)
+analisador.gerar_relatorio_tab("saida.TAB", equipe, integrantes)
+
+
+
