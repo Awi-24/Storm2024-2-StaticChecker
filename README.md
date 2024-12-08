@@ -111,5 +111,3 @@ TipoSimb: IDENTIFICADOR, Linhas: (2, 3, 5).
 - Certifique-se de que o arquivo fonte segue as especificações da linguagem Storm2024-2.
 - Palavras-chave e identificadores devem ser distinguíveis por suas regras léxicas.
 - Identificadores com mais de 30 caracteres serão truncados, mas seu funcionamento seguirá as especificações.
-
-Este código é modular, permitindo a extensão para análises adicionais, como a implementação de um analisador sintático completo no futuro.
