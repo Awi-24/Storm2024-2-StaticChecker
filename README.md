@@ -43,12 +43,80 @@ O **Static Checker** consiste em três partes principais:
    - [mexer nisso aqui depois]
 
 
-## Requisitos
+1. Pré-requisitos
+Python 3.8 ou superior instalado.
+Familiaridade com o padrão de texto fonte .242 especificado para Storm2024-2.
+2. Estrutura de Entrada
+O código aceita um arquivo fonte com extensão .242, contendo o programa em Storm2024-2. O texto deve seguir as regras da linguagem especificadas, incluindo uso de identificadores, palavras-chave, delimitadores, e operadores válidos.
 
-- Python 3.x
-- Bibliotecas:
-  - `re` (para expressões regulares)
-  - `os` (para manipulação de arquivos)
+3. Execução
+Configurar o arquivo fonte:
+
+Escreva o código em Storm2024-2 e salve-o com a extensão .242.
+Criar uma instância do Analisador Léxico:
+
+python
+Copiar código
+from analisador import AnalisadorLexico, AnalisadorSintatico
+
+# Ler o código fonte
+with open("exemplo.242", "r", encoding="utf-8") as arquivo:
+    codigo = arquivo.read()
+
+analisador_lexico = AnalisadorLexico(codigo)
+tokens, tabela_simbolos = analisador_lexico.analisar()
+Criar uma instância do Analisador Sintático:
+
+Após a análise léxica, passe os tokens para o analisador sintático para gerar os relatórios:
+python
+Copiar código
+analisador_sintatico = AnalisadorSintatico(tokens)
+
+# Gerar os relatórios
+equipe = "EQUIPE01"
+integrantes = ["Aluno 1 - email1@exemplo.com", "Aluno 2 - email2@exemplo.com"]
+analisador_sintatico.gerar_relatorio_lex("exemplo.242", equipe, integrantes)
+analisador_sintatico.gerar_relatorio_tab("exemplo.242", equipe, integrantes)
+Verificar os relatórios gerados:
+
+Após a execução, serão criados dois arquivos na mesma pasta do programa:
+exemplo.LEX: Contém os tokens identificados e informações relacionadas.
+exemplo.TAB: Contém detalhes da tabela de símbolos.
+
+Formato dos Relatórios
+Relatório .LEX
+Exemplo de saída:
+
+yaml
+Copiar código
+Código da Equipe: EQUIPE01
+Componentes:
+  Aluno 1 - email1@exemplo.com
+  Aluno 2 - email2@exemplo.com
+
+RELATÓRIO DA ANÁLISE LEXICA:
+Lexeme: PROGRAMA, Código: 101, Índice da Tabela de Símbolos: N/A, Linha: [1]
+Lexeme: X, Código: 103, Índice da Tabela de Símbolos: 1, Linha: [2]
+...
+Relatório .TAB
+Exemplo de saída:
+
+yaml
+Copiar código
+Código da Equipe: EQUIPE01
+Componentes:
+  Aluno 1 - email1@exemplo.com
+  Aluno 2 - email2@exemplo.com
+
+RELATÓRIO DA TABELA DE SÍMBOLOS. Texto fonte analisado: exemplo.242
+Entrada: 1, Código: 103, Lexeme: X,
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1,
+TipoSimb: IDENTIFICADOR, Linhas: (2, 3, 5).
+...
+Pontos de Atenção
+Certifique-se de que o arquivo fonte segue as especificações da linguagem Storm2024-2.
+Palavras-chave e identificadores devem ser distinguíveis por suas regras léxicas.
+Identificadores com mais de 30 caracteres serão truncados, mas seu funcionamento seguirá as especificações.
 
 
 ## Licença
