@@ -2,7 +2,7 @@ import os
 import sys
 
 from analisador_lexico import AnalisadorLexico
-from analisador_sintatico_parcial import AnalisadorSintaticoParcial
+from analisador_sintatico_parcial import AnalisadorSintaticoParcial, AnalisadorSintatico
 
 integrantes = [
     "Adrian Widmer; adrian.widmer@aln.senaicimatec.edu.br; (71)99284-7135",
@@ -22,10 +22,11 @@ def processar_arquivo(nome_arquivo):
     analisador_lexico = AnalisadorLexico(codigo_fonte)
     tokens, tabela_simbolos = analisador_lexico.analisar()
     
-    analisador_sintatico = AnalisadorSintaticoParcial(tokens)
+    analisador_sintatico_parcial = AnalisadorSintaticoParcial(tokens)
+    analisador_sintatico_erro = AnalisadorSintatico(tokens)
 
     # Corrigindo a forma de construção do caminho dos relatórios
-    diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+    diretorio_atual = os.path.dirname(os.path.abspath(sys.executable))  # Corrigido para garantir que usa o diretório do executável
     nome_base = os.path.splitext(os.path.basename(nome_arquivo))[0]
 
     # Corrigir caminho dos relatórios
@@ -33,11 +34,12 @@ def processar_arquivo(nome_arquivo):
     caminho_relatorio_tab = os.path.join(diretorio_atual, f"{nome_base}.TAB")
 
     # Gerar relatórios
-    analisador_sintatico.gerar_relatorio_lex(caminho_relatorio_lex, "Equipe 02", integrantes)
-    analisador_sintatico.gerar_relatorio_tab(caminho_relatorio_tab, "Equipe 02", integrantes)
+    analisador_sintatico_parcial.gerar_relatorio_lex(caminho_relatorio_lex, "Equipe 02", integrantes)
+    analisador_sintatico_parcial.gerar_relatorio_tab(caminho_relatorio_tab, "Equipe 02", integrantes)
+    analisador_sintatico_erro.programa()
 
 def main():
-    diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+    diretorio_atual = os.path.dirname(os.path.abspath(sys.executable))  # Usando o diretório do executável
     diretorio_testes = os.path.join(diretorio_atual, "../tests")
     nome_arquivo = None
 

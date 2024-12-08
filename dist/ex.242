@@ -1,0 +1,15 @@
+programa Exemplo1
+declaracoes
+    tipoVar inteiro: x, y, z;
+    tipoVar real: media;
+fimDeclaracoes
+funcoes
+    tipoFunc real: calculaMedia(inteiro: a, b, c)
+    {
+        retorna (a + b + c) / 3;
+
+        //dança gatrinho sdfhsaduifsaikdfia
+        /*asjfksadfksdkfsakdgkfsdk*/
+    } fimFunc;
+fimFuncoes
+fimPrograma
