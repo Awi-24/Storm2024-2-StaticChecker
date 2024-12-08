@@ -1,4 +1,4 @@
-Código da Equipe: 02
+Código da Equipe: Equipe 02
 Componentes:
   Adrian Widmer; adrian.widmer@aln.senaicimatec.edu.br; (71)99284-7135
   Giulia Franca; giulia.franca@aln.senaicimetec.edu.br; (71)99348-2808
@@ -6,3 +6,127 @@ Componentes:
   Icaro Canela; ícaro.almeida@aln.senaicimatec.edu.br;(71)98157-4815
 
 RELATÓRIO DA TABELA DE SÍMBOLOS. Texto fonte analisado: ex.TAB
+Entrada: None, Código: 101, Lexeme: PROGRAMA, 
+QtdCharAntesTrunc: 8, QtdCharDepoisTrunc: 8, 
+TipoSimb: PALAVRA_CHAVE, Linhas: (1).
+-------------------------------------------------------------------
+Entrada: 1, Código: 103, Lexeme: EXEMPLO1, 
+QtdCharAntesTrunc: 8, QtdCharDepoisTrunc: 8, 
+TipoSimb: IDENTIFICADOR, Linhas: (1).
+-------------------------------------------------------------------
+Entrada: None, Código: 101, Lexeme: DECLARACOES, 
+QtdCharAntesTrunc: 11, QtdCharDepoisTrunc: 11, 
+TipoSimb: PALAVRA_CHAVE, Linhas: (2).
+-------------------------------------------------------------------
+Entrada: 2, Código: 103, Lexeme: TIPOVAR, 
+QtdCharAntesTrunc: 7, QtdCharDepoisTrunc: 7, 
+TipoSimb: IDENTIFICADOR, Linhas: (3).
+-------------------------------------------------------------------
+Entrada: None, Código: 101, Lexeme: INTEIRO, 
+QtdCharAntesTrunc: 7, QtdCharDepoisTrunc: 7, 
+TipoSimb: PALAVRA_CHAVE, Linhas: (3).
+-------------------------------------------------------------------
+Entrada: None, Código: 102, Lexeme: :, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: DELIMITADOR, Linhas: (3).
+-------------------------------------------------------------------
+Entrada: 3, Código: 103, Lexeme: X, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: IDENTIFICADOR, Linhas: (3).
+-------------------------------------------------------------------
+Entrada: None, Código: 102, Lexeme: ,, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: DELIMITADOR, Linhas: (3).
+-------------------------------------------------------------------
+Entrada: 4, Código: 103, Lexeme: Y, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: IDENTIFICADOR, Linhas: (3).
+-------------------------------------------------------------------
+Entrada: 5, Código: 103, Lexeme: Z, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: IDENTIFICADOR, Linhas: (3).
+-------------------------------------------------------------------
+Entrada: None, Código: 102, Lexeme: ;, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: DELIMITADOR, Linhas: (3).
+-------------------------------------------------------------------
+Entrada: None, Código: 101, Lexeme: REAL, 
+QtdCharAntesTrunc: 4, QtdCharDepoisTrunc: 4, 
+TipoSimb: PALAVRA_CHAVE, Linhas: (4).
+-------------------------------------------------------------------
+Entrada: 6, Código: 103, Lexeme: MEDIA, 
+QtdCharAntesTrunc: 5, QtdCharDepoisTrunc: 5, 
+TipoSimb: IDENTIFICADOR, Linhas: (4).
+-------------------------------------------------------------------
+Entrada: None, Código: 101, Lexeme: FIMDECLARACOES, 
+QtdCharAntesTrunc: 14, QtdCharDepoisTrunc: 14, 
+TipoSimb: PALAVRA_CHAVE, Linhas: (5).
+-------------------------------------------------------------------
+Entrada: None, Código: 101, Lexeme: FUNCOES, 
+QtdCharAntesTrunc: 7, QtdCharDepoisTrunc: 7, 
+TipoSimb: PALAVRA_CHAVE, Linhas: (6).
+-------------------------------------------------------------------
+Entrada: 7, Código: 103, Lexeme: TIPOFUNC, 
+QtdCharAntesTrunc: 8, QtdCharDepoisTrunc: 8, 
+TipoSimb: IDENTIFICADOR, Linhas: (7).
+-------------------------------------------------------------------
+Entrada: 8, Código: 103, Lexeme: CALCULAMEDIA, 
+QtdCharAntesTrunc: 12, QtdCharDepoisTrunc: 12, 
+TipoSimb: IDENTIFICADOR, Linhas: (7).
+-------------------------------------------------------------------
+Entrada: None, Código: 102, Lexeme: (, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: DELIMITADOR, Linhas: (7).
+-------------------------------------------------------------------
+Entrada: 9, Código: 103, Lexeme: A, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: IDENTIFICADOR, Linhas: (7).
+-------------------------------------------------------------------
+Entrada: 10, Código: 103, Lexeme: B, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: IDENTIFICADOR, Linhas: (7).
+-------------------------------------------------------------------
+Entrada: 11, Código: 103, Lexeme: C, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: IDENTIFICADOR, Linhas: (7).
+-------------------------------------------------------------------
+Entrada: None, Código: 102, Lexeme: ), 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: DELIMITADOR, Linhas: (7).
+-------------------------------------------------------------------
+Entrada: None, Código: 102, Lexeme: {, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: DELIMITADOR, Linhas: (8).
+-------------------------------------------------------------------
+Entrada: None, Código: 101, Lexeme: RETORNA, 
+QtdCharAntesTrunc: 7, QtdCharDepoisTrunc: 7, 
+TipoSimb: PALAVRA_CHAVE, Linhas: (9).
+-------------------------------------------------------------------
+Entrada: None, Código: 105, Lexeme: +, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: OPERADOR_ARITMETICO, Linhas: (9).
+-------------------------------------------------------------------
+Entrada: None, Código: 105, Lexeme: /, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: OPERADOR_ARITMETICO, Linhas: (9).
+-------------------------------------------------------------------
+Entrada: None, Código: 104, Lexeme: 3, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: NUMERO, Linhas: (9).
+-------------------------------------------------------------------
+Entrada: None, Código: 102, Lexeme: }, 
+QtdCharAntesTrunc: 1, QtdCharDepoisTrunc: 1, 
+TipoSimb: DELIMITADOR, Linhas: (13).
+-------------------------------------------------------------------
+Entrada: None, Código: 101, Lexeme: FIMFUNC, 
+QtdCharAntesTrunc: 7, QtdCharDepoisTrunc: 7, 
+TipoSimb: PALAVRA_CHAVE, Linhas: (13).
+-------------------------------------------------------------------
+Entrada: 12, Código: 103, Lexeme: FIMFUNCOES, 
+QtdCharAntesTrunc: 10, QtdCharDepoisTrunc: 10, 
+TipoSimb: IDENTIFICADOR, Linhas: (14).
+-------------------------------------------------------------------
+Entrada: None, Código: 101, Lexeme: FIMPROGRAMA, 
+QtdCharAntesTrunc: 11, QtdCharDepoisTrunc: 11, 
+TipoSimb: PALAVRA_CHAVE, Linhas: (15).
+-------------------------------------------------------------------

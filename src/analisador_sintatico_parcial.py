@@ -26,20 +26,24 @@ class AnalisadorSintatico:
                         
             print(f"Relatório .LEX gerado em {nome_arquivo}")
 
-    def gerar_relatorio_tab(self, tokens, nome_arquivo, integrantes):
-        """Gera o relatório .TAB com a tabela de símbolos, apenas se a análise sintática for válida."""   
-  
+    def gerar_relatorio_tab(self, nome_arquivo, equipe, integrantes):
+        """Gera o relatório .TAB com a tabela de símbolos, ignorando espaços e quebras de linha."""   
+
         caminho_arquivo_tab = os.path.splitext(nome_arquivo)[0] + ".TAB"
 
         with open(caminho_arquivo_tab, "w", encoding="utf-8") as arquivo:
-            arquivo.write("Código da Equipe: 99\n")
+            arquivo.write(f"Código da Equipe: {equipe}\n")
             arquivo.write("Componentes:\n")
             for integrante in integrantes:
                 arquivo.write(f"  {integrante}\n")
             arquivo.write(f"\nRELATÓRIO DA TABELA DE SÍMBOLOS. Texto fonte analisado: {os.path.basename(nome_arquivo)}\n")
 
-            """tabela_simbolos = {}
-            for token in tokens:
+            tabela_simbolos = {}
+            for token in self.tokens:
+                # Ignorar espaços em branco e quebras de linha
+                if token["TipoSimb"] in ["ESPACO", "QUEBRA_DE_LINHA"]:
+                    continue
+
                 lexeme = token["Lexeme"]
                 if lexeme not in tabela_simbolos:
                     tabela_simbolos[lexeme] = {
@@ -51,13 +55,13 @@ class AnalisadorSintatico:
                         "TipoSimb": token["TipoSimb"],
                         "Linhas": set(),
                     }
-                tabela_simbolos[lexeme]["Linhas"].update(token["Linhas"]) """
+                tabela_simbolos[lexeme]["Linhas"].update(token["Linhas"])
 
             for simbolo in tabela_simbolos.values():
                 linhas = ", ".join(map(str, sorted(simbolo["Linhas"])))
-                arquivo.write(f"Entrada: {simbolo['Entrada']}, Código: {simbolo['Código']}, Lexeme: {simbolo['Lexeme']}, "
-                              f"QtdCharAntesTrunc: {simbolo['QtdCharAntesTrunc']}, QtdCharDepoisTrunc: {simbolo['QtdCharDepoisTrunc']}, "
-                              f"TipoSimb: {simbolo['TipoSimb']}, Linhas: ({linhas}).\n")
+                arquivo.write(f"Entrada: {simbolo['Entrada']}, Código: {simbolo['Código']}, Lexeme: {simbolo['Lexeme']}, \n"
+                            f"QtdCharAntesTrunc: {simbolo['QtdCharAntesTrunc']}, QtdCharDepoisTrunc: {simbolo['QtdCharDepoisTrunc']}, \n"
+                            f"TipoSimb: {simbolo['TipoSimb']}, Linhas: ({linhas}).\n")
                 arquivo.write("-------------------------------------------------------------------\n")
 
-        print(f"Relatório .TAB gerado em {caminho_arquivo_tab}") 
+        print(f"Relatório .TAB gerado em {caminho_arquivo_tab}")
