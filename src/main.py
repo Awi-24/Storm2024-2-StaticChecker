@@ -26,7 +26,7 @@ def processar_arquivo(nome_arquivo):
     analisador_sintatico_erro = AnalisadorSintatico(tokens)
 
     # Corrigindo a forma de construção do caminho dos relatórios
-    diretorio_atual = os.path.dirname(os.path.abspath(sys.executable))  # Corrigido para garantir que usa o diretório do executável
+    diretorio_atual = os.path.dirname(os.path.abspath(__file__))
     nome_base = os.path.splitext(os.path.basename(nome_arquivo))[0]
 
     # Corrigir caminho dos relatórios
@@ -39,8 +39,8 @@ def processar_arquivo(nome_arquivo):
     analisador_sintatico_erro.programa()
 
 def main():
-    diretorio_atual = os.path.dirname(os.path.abspath(sys.executable))  # Usando o diretório do executável
-    diretorio_testes = os.path.join(diretorio_atual, "../tests")
+    diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+    diretorio_testes = os.path.join(diretorio_atual, "./")
     nome_arquivo = None
 
     if os.path.exists(diretorio_testes):
@@ -50,7 +50,8 @@ def main():
                 break
 
     if nome_arquivo is None and len(sys.argv) < 2:
-        print("Erro: Nenhum arquivo .242 encontrado em 'tests' e nenhum arquivo fornecido. Arraste um arquivo .242 para o ícone do executável.")
+        print("Erro: Nenhum arquivo .242 encontrado no diretório e nenhum arquivo fornecido. Arraste um arquivo .242 para o ícone do executável.")
+        os.sleep(1000)
         return
 
     if nome_arquivo is None:
