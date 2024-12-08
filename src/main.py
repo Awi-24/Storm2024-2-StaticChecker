@@ -2,13 +2,13 @@ import os
 import sys
 
 from analisador_lexico import AnalisadorLexico
-from analisador_sintatico_parcial import AnalisadorSintatico
+from analisador_sintatico_parcial import AnalisadorSintaticoParcial
 
 integrantes = [
     "Adrian Widmer; adrian.widmer@aln.senaicimatec.edu.br; (71)99284-7135",
     "Giulia Franca; giulia.franca@aln.senaicimetec.edu.br; (71)99348-2808",
     "Marcelo Silveira; marcelo.s.filho@aln.senaicimatec.edu.br; (71)99348-2808",
-    "Icaro Canela; ícaro.almeida@aln.senaicimatec.edu.br;(71)98157-4815"
+    "Icaro Canela; icaro.almeida@aln.senaicimatec.edu.br; (71)98157-4815"
 ]
 
 def processar_arquivo(nome_arquivo):
@@ -22,7 +22,7 @@ def processar_arquivo(nome_arquivo):
     analisador_lexico = AnalisadorLexico(codigo_fonte)
     tokens, tabela_simbolos = analisador_lexico.analisar()
     
-    analisador_sintatico = AnalisadorSintatico(tokens)
+    analisador_sintatico = AnalisadorSintaticoParcial(tokens)
 
     # Corrigindo a forma de construção do caminho dos relatórios
     diretorio_atual = os.path.dirname(os.path.abspath(__file__))

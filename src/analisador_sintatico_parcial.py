@@ -1,15 +1,11 @@
 import os
 
-#todo ESSA PORRA AQUI TEM QUE PRINPAR A CARALHA DO .TAB NO FORMATO LA. LEX JA TA CERTO.
-#todo EH SO PEGAR TOKENS E FORMATAR. TO CANSADO. VOU DORMIR.
-
-
-class AnalisadorSintatico:
+class AnalisadorSintaticoParcial:
     def __init__(self, tokens):
-        self.tokens = tokens  # Lista de tokens gerados pelo léxico
+        self.tokens = tokens  #* tokens gerados pelo analisador lexico
 
     def gerar_relatorio_lex(self, nome_arquivo, equipe, integrantes):
-            """Gera o relatório .LEX com o índice da tabela de símbolos."""
+        #!gera o relatorio .LEX com o indice da tabela de simbolos
             with open(nome_arquivo, "w", encoding="utf-8") as arquivo:
                 arquivo.write(f"Código da Equipe: {equipe}\n")
                 arquivo.write("Componentes:\n")
@@ -17,7 +13,6 @@ class AnalisadorSintatico:
                     arquivo.write(f"  {integrante}\n")
                 arquivo.write("\nRELATÓRIO DA ANÁLISE LEXICA:\n")
                 
-                # Processa os tokens e escreve o relatório
                 for token in self.tokens:
                     arquivo.write(f"Lexeme: {token['Lexeme']}, Código: {token['Código']}, "
                                 f"Índice da Tabela de Símbolos: {token['Entrada'] if token['Entrada'] is not None else 'N/A'}, "
@@ -27,7 +22,7 @@ class AnalisadorSintatico:
             print(f"Relatório .LEX gerado em {nome_arquivo}")
 
     def gerar_relatorio_tab(self, nome_arquivo, equipe, integrantes):
-        """Gera o relatório .TAB com a tabela de símbolos, ignorando espaços e quebras de linha."""   
+        #!gera o relatorio .TAB com a tabela de simbolos ignorando espaços e quebras de linha 
 
         caminho_arquivo_tab = os.path.splitext(nome_arquivo)[0] + ".TAB"
 
@@ -40,7 +35,6 @@ class AnalisadorSintatico:
 
             tabela_simbolos = {}
             for token in self.tokens:
-                # Ignorar espaços em branco e quebras de linha
                 if token["TipoSimb"] in ["ESPACO", "QUEBRA_DE_LINHA"]:
                     continue
 
@@ -65,3 +59,10 @@ class AnalisadorSintatico:
                 arquivo.write("-------------------------------------------------------------------\n")
 
         print(f"Relatório .TAB gerado em {caminho_arquivo_tab}")
+
+#! ESSA CLASSE DEVE ANALISAR A SAIDA DE TOKENS, IGNORAR ESPAÇOS EM BRANCO E VERIFICAR ERROS SINTATICOS.
+
+class AnalisaSintaxe():
+    
+    def __init__(self):
+        pass

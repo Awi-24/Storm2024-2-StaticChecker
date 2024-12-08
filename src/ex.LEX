@@ -3,7 +3,7 @@ Componentes:
   Adrian Widmer; adrian.widmer@aln.senaicimatec.edu.br; (71)99284-7135
   Giulia Franca; giulia.franca@aln.senaicimetec.edu.br; (71)99348-2808
   Marcelo Silveira; marcelo.s.filho@aln.senaicimatec.edu.br; (71)99348-2808
-  Icaro Canela; ícaro.almeida@aln.senaicimatec.edu.br;(71)98157-4815
+  Icaro Canela; icaro.almeida@aln.senaicimatec.edu.br; (71)98157-4815
 
 RELATÓRIO DA ANÁLISE LEXICA:
 Lexeme: PROGRAMA, Código: 101, Índice da Tabela de Símbolos: N/A, Linha: [1]
