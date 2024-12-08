@@ -1,7 +1,8 @@
 import os
 import sys
+
 from analisador_lexico import AnalisadorLexico
-from analisador_sintatico import AnalisadorSintatico
+from analisador_sintatico_parcial import AnalisadorSintatico
 
 integrantes = [
     "Adrian Widmer; adrian.widmer@aln.senaicimatec.edu.br; (71)99284-7135",
@@ -18,47 +19,34 @@ def processar_arquivo(nome_arquivo):
     with open(nome_arquivo, "r", encoding="utf-8") as arquivo:
         codigo_fonte = arquivo.read()
 
-    # Análise léxica
     analisador_lexico = AnalisadorLexico(codigo_fonte)
     tokens, tabela_simbolos = analisador_lexico.analisar()
-
-    # Análise sintática
+    
     analisador_sintatico = AnalisadorSintatico(tokens)
-    analisador_sintatico.analisar_programa()
 
+    # Corrigindo a forma de construção do caminho dos relatórios
     diretorio_atual = os.path.dirname(os.path.abspath(__file__))
     nome_base = os.path.splitext(os.path.basename(nome_arquivo))[0]
 
-    # Caminhos para os relatórios
+    # Corrigir caminho dos relatórios
     caminho_relatorio_lex = os.path.join(diretorio_atual, f"{nome_base}.LEX")
     caminho_relatorio_tab = os.path.join(diretorio_atual, f"{nome_base}.TAB")
 
-    # Geração do relatório léxico
+    # Gerar relatórios
     analisador_sintatico.gerar_relatorio_lex(caminho_relatorio_lex, "Equipe 02", integrantes)
-
-    # Geração do relatório TAB somente se não houver erros sintáticos
-    if not analisador_sintatico.erros_sintaticos:
-        analisador_sintatico.gerar_relatorio_tab(tokens, caminho_relatorio_tab, integrantes)
-        print("Relatório .TAB gerado com sucesso.")
-    else:
-        print("Relatório .TAB não gerado devido a erros na análise sintática.")
-        print("Erros sintáticos encontrados:")
-        for erro in analisador_sintatico.erros_sintaticos:
-            print(f"- {erro}")
+    analisador_sintatico.gerar_relatorio_tab(caminho_relatorio_tab, "Equipe 02", integrantes)
 
 def main():
     diretorio_atual = os.path.dirname(os.path.abspath(__file__))
     diretorio_testes = os.path.join(diretorio_atual, "../tests")
     nome_arquivo = None
 
-    # Busca por arquivos de teste no diretório padrão
     if os.path.exists(diretorio_testes):
         for arquivo in os.listdir(diretorio_testes):
             if arquivo.endswith(".242"):
                 nome_arquivo = os.path.join(diretorio_testes, arquivo)
                 break
 
-    # Caso nenhum arquivo seja encontrado e nenhum argumento seja fornecido
     if nome_arquivo is None and len(sys.argv) < 2:
         print("Erro: Nenhum arquivo .242 encontrado em 'tests' e nenhum arquivo fornecido. Arraste um arquivo .242 para o ícone do executável.")
         return

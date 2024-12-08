@@ -13,10 +13,10 @@ class AnalisadorLexico:
         codigo_limpo = ""
         i = 0
         while i < len(self.codigo):
-            if self.codigo[i:i+2] == "//":  # Comentário de uma linha
+            if self.codigo[i:i+2] == "//":  # comment one row
                 while i < len(self.codigo) and self.codigo[i] != '\n':
                     i += 1
-            elif self.codigo[i:i+2] == "/*":  # Comentário de várias linhas
+            elif self.codigo[i:i+2] == "/*":  # comment mult row
                 i += 2
                 while i < len(self.codigo) and self.codigo[i:i+2] != "*/":
                     i += 1
@@ -28,14 +28,15 @@ class AnalisadorLexico:
 
     def analisar(self):
         tokens_definidos = [
-            ("CADEIA", r'"[^"]{0,30}"', 107),
-            ("DELIMITADOR", r"[{}();,:,]", 102),
-            ("IDENTIFICADOR", r"\b[A-Z_][A-Z0-9_]{0,29}\b", 103),
-            ("NUMERO", r"\b\d+(\.\d+)?\b", 104),
-            ("OPERADOR_ARITMETICO", r"[\+\-\*/%]", 105),
-            ("OPERADOR_LOGICO", r"([<>]=?|==|#)", 106),  # Modificado para pegar todos os operadores lógicos
-            ("ESPACO", r"\s+", 108),
-            ("DESCONHECIDO", r".", 999),
+            ("PALAVRA_CHAVE", r"\b(PROGRAMA|FIMPROGRAMA|FIMDECLARACOES|FIMFUNC|FUNCOES|IMPRIME|SE|SENAO|ENQUANTO|RETORNA|VAZIO|LOGICO|REAL|INTEIRO|CADEIA|CARACTER|DECLARACOES)\b", 101),
+            ("DELIMITADOR", r"[{}();,:]", 102),
+            ("IDENTIFICADOR", r"\b[A-Z_][A-Z0-9_]{0,29}\b", 103),  # Nomes
+            ("NUMERO", r"\b\d+(\.\d+)?\b", 104),  # Valores Numéricos
+            ("OPERADOR_ARITMETICO", r"[\+\-\*/%]", 105),  # Matemática
+            ("OPERADOR_LOGICO", r"[<>!=]=?|==|#", 106),  # Lógica
+            ("CADEIA", r'"[^"]{0,30}"', 107),  # Vetor
+            ("ESPACO", r"\s+", 108),  # Vazio
+            ("DESCONHECIDO", r".", 999),  # Token inválido
         ]
 
         self.codigo = self.remover_comentarios()
