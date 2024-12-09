@@ -43,7 +43,10 @@ O código aceita um arquivo fonte com extensão `.242`, contendo o programa em *
 1. **Configurar o arquivo fonte:**
    - Escreva o código em Storm2024-2 e salve-o com a extensão `.242`.
 
-2. **Criar uma instância do Analisador Léxico:**
+2. **Testando o compilador:**
+    - Para testar o compilador, basta arrastar o arquivo com extensão `.242` para o executável `main`
+
+3. **Criar uma instância do Analisador Léxico:**
    ```python
    from analisador import AnalisadorLexico, AnalisadorSintatico
    
@@ -55,7 +58,7 @@ O código aceita um arquivo fonte com extensão `.242`, contendo o programa em *
    tokens, tabela_simbolos = analisador_lexico.analisar()
    ```
 
-3. **Criar uma instância do Analisador Sintático:**
+4. **Criar uma instância do Analisador Sintático:**
    - Após a análise léxica, passe os tokens para o analisador sintático para gerar os relatórios:
    ```python
    analisador_sintatico = AnalisadorSintatico(tokens)
